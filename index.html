@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>コミュニティ設計書 ＆ ヒアリングシート ｜ こうじさん × 作り手コミュニティ</title>
+<meta name="description" content="フォロワー×作り手コミュニティの設計書と、一緒に決めたいことのヒアリングシート。各項目に直接入力できます。">
+<meta property="og:title" content="コミュニティ設計書 ＆ ヒアリングシート">
+<meta property="og:description" content="フォロワー×作り手コミュニティの構想と、一緒に決めたいこと。各項目に直接入力できます。">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper:#F4F2EC;
+  --ink:#1F232C;
+  --ink-soft:#535968;
+  --ink-faint:#8B8FA0;
+  --rule:#E3DFD6;
+  --rule-soft:#ECE8DF;
+  --accent:#B07C33;
+  --accent-deep:#8A5E22;
+  --accent-wash:#F3E7CF;
+  --den:#1E2E37;
+  --panel:#FAF8F3;
+  --panel-2:#F7F4ED;
+  --serif:"Noto Serif JP","Noto Serif CJK JP",serif;
+  --sans:"Noto Sans JP","Noto Sans CJK JP",system-ui,sans-serif;
+}
+*{ box-sizing:border-box; }
+html{ background:var(--paper); -webkit-text-size-adjust:100%; }
+body{
+  margin:0; color:var(--ink); background:var(--paper);
+  font-family:var(--sans); font-size:16px; line-height:1.85;
+  font-feature-settings:"palt" 1; -webkit-font-smoothing:antialiased;
+}
+.wrap{ max-width:860px; margin:0 auto; padding:56px 30px 110px; }
+.serif{ font-family:var(--serif); }
+b,strong{ font-weight:700; }
+p{ margin:.6em 0; }
+
+/* hero */
+.hero{ padding-bottom:16px; border-bottom:1.5px solid var(--ink); margin-bottom:26px; }
+.eyebrow{ font-size:.74rem; letter-spacing:.26em; color:var(--accent-deep); font-weight:700; margin-bottom:14px; }
+.hero h1{ font-family:var(--serif); font-weight:600; font-size:2.15rem; line-height:1.3; margin:0; }
+.hero h1 .amp{ display:block; font-size:1.18rem; color:var(--ink-soft); font-weight:500; margin-top:6px; }
+.hero .sub{ margin-top:14px; font-size:1.02rem; color:var(--ink-soft); }
+.hero .note{ margin-top:14px; font-size:.86rem; line-height:1.7; color:var(--ink-faint); padding-left:13px; border-left:2px solid var(--rule); }
+
+/* section */
+.sec{ margin:34px 0; }
+.sec-head{ display:flex; align-items:baseline; gap:13px; margin-bottom:12px; }
+.sec-no{ font-family:var(--serif); font-size:.9rem; font-weight:600; color:var(--accent); min-width:1.8em; }
+.sec-head h2{ font-family:var(--serif); font-weight:600; font-size:1.32rem; margin:0; }
+.sec-head .hr{ flex:1; height:0; border-top:1px solid var(--rule); transform:translateY(-4px); }
+
+/* essence */
+.essence{ background:var(--panel); border:1px solid var(--rule); border-radius:16px; padding:22px 26px; margin:8px 0 14px; }
+.essence-label{ font-size:.72rem; letter-spacing:.2em; color:var(--accent-deep); font-weight:700; margin-bottom:9px; }
+.essence-text{ font-family:var(--serif); font-size:1.22rem; line-height:1.75; margin:0; font-weight:500; }
+.essence-text .em{ color:var(--accent-deep); font-weight:600; }
+
+/* quote / callout */
+.quote{ font-family:var(--serif); font-size:1.12rem; line-height:1.7; padding:2px 0 2px 18px; border-left:3px solid var(--accent); margin:14px 0; }
+.callout{ background:var(--panel-2); border:1px solid var(--rule); border-radius:13px; padding:16px 20px; margin:14px 0; }
+.callout .k{ font-size:.72rem; letter-spacing:.18em; font-weight:700; color:var(--accent-deep); display:block; margin-bottom:7px; }
+.arrowline{ color:var(--accent-deep); font-weight:600; }
+
+/* figure */
+figure{ margin:18px 0; }
+.fig-svg{ width:100%; height:auto; display:block; }
+.fig-svg text{ font-family:var(--sans); }
+.fig-svg text.s{ font-family:var(--serif); }
+.legend{ display:flex; gap:14px; margin-top:14px; }
+.legend .lg{ flex:1; padding:13px 15px; border-radius:11px; border:1px solid var(--rule); background:var(--panel); }
+.legend .lg.dark{ background:var(--den); border-color:var(--den); }
+.legend .lg .t{ font-family:var(--serif); font-weight:600; font-size:1rem; margin-bottom:3px; }
+.legend .lg.dark .t{ color:#F0D9AE; }
+.legend .lg .d{ font-size:.82rem; line-height:1.55; color:var(--ink-soft); }
+.legend .lg.dark .d{ color:#C3C9CE; }
+.bridge-note{ margin-top:13px; display:flex; gap:14px; }
+.bridge-note .bn{ flex:1; font-size:.84rem; line-height:1.55; color:var(--ink-soft); padding-left:26px; position:relative; }
+.bridge-note .bn .num{ position:absolute; left:0; top:1px; width:18px; height:18px; border-radius:50%; background:var(--accent-wash); color:var(--accent-deep); font-weight:700; font-size:.72rem; display:flex; align-items:center; justify-content:center; font-family:var(--serif); }
+.bridge-note .bn b{ color:var(--ink); }
+
+/* priority bars */
+.bars{ margin:12px 0 4px; }
+.bar{ display:flex; align-items:center; gap:13px; margin:8px 0; }
+.bar .rank{ font-family:var(--serif); font-weight:600; font-size:.9rem; color:var(--ink-faint); width:1.4em; text-align:right; }
+.bar .track{ flex:1; min-width:0; }
+.bar .fill{ height:30px; border-radius:8px; display:flex; align-items:center; padding-left:15px; color:#fff; font-size:.92rem; font-weight:500; white-space:nowrap; overflow:hidden; }
+.bar.b1 .fill{ width:100%; background:var(--den); }
+.bar.b2 .fill{ width:80%;  background:#3C5663; }
+.bar.b3 .fill{ width:60%;  background:#6E7A82; }
+.bar.b4 .fill{ width:44%;  background:#AEA9A0; color:#3a3a3a; }
+
+/* cards */
+.cards{ display:flex; gap:15px; margin:14px 0; }
+.cards .card{ flex:1; background:var(--panel); border:1px solid var(--rule); border-radius:13px; padding:16px 18px; }
+.cards .card .ct{ font-family:var(--serif); font-weight:600; font-size:1.02rem; margin-bottom:6px; display:flex; align-items:center; gap:9px; }
+.cards .card .cn{ width:22px; height:22px; border-radius:50%; background:var(--den); color:#F0D9AE; font-size:.82rem; font-weight:700; display:flex; align-items:center; justify-content:center; font-family:var(--serif); flex:none; }
+.cards .card .cd{ font-size:.85rem; line-height:1.6; color:var(--ink-soft); }
+
+/* scope */
+.scope{ display:flex; gap:15px; margin:14px 0; }
+.scope .col{ flex:1; border-radius:13px; padding:16px 18px; }
+.scope .col.in{ background:var(--panel); border:1px solid var(--rule); }
+.scope .col.out{ background:transparent; border:1px dashed var(--rule); }
+.scope .col h4{ margin:0 0 10px; font-size:.9rem; font-family:var(--serif); font-weight:600; }
+.scope .col.in h4{ color:var(--accent-deep); }
+.scope .col.out h4{ color:var(--ink-faint); }
+.scope ul{ list-style:none; margin:0; padding:0; }
+.scope li{ font-size:.86rem; line-height:1.5; padding:4px 0 4px 22px; position:relative; }
+.scope .col.in li::before{ content:"✓"; position:absolute; left:0; color:var(--accent); font-weight:700; }
+.scope .col.out li{ color:var(--ink-soft); }
+.scope .col.out li::before{ content:"—"; position:absolute; left:0; color:var(--ink-faint); }
+
+.subt{ font-size:.86rem; color:var(--ink-soft); margin-top:6px; }
+.chips{ margin:11px 0 2px; display:flex; flex-wrap:wrap; gap:8px; }
+.chip{ font-size:.84rem; padding:5px 14px; border-radius:999px; background:var(--accent-wash); color:var(--accent-deep); border:1px solid #E7D3AD; font-weight:500; }
+.tinynote{ font-size:.84rem; color:var(--ink-faint); margin-top:10px; }
+
+/* risk */
+.risk{ list-style:none; margin:10px 0; padding:0; }
+.risk li{ position:relative; padding:8px 0 8px 24px; font-size:.95rem; line-height:1.65; border-bottom:1px solid var(--rule-soft); }
+.risk li:last-child{ border-bottom:none; }
+.risk li::before{ content:""; position:absolute; left:3px; top:16px; width:8px; height:8px; border-radius:50%; background:var(--accent); }
+
+/* divider */
+.divider{ margin-top:42px; }
+.divider .band{ background:var(--den); color:#F4ECDD; border-radius:18px; padding:28px 30px; margin-bottom:6px; }
+.divider .band .eyebrow{ color:#E0BE7D; margin-bottom:10px; }
+.divider .band h2{ font-family:var(--serif); font-weight:600; font-size:1.7rem; margin:0 0 12px; }
+.divider .band p{ font-size:.92rem; line-height:1.75; color:#CFC8BC; margin:0; }
+.divider .band p b{ color:#F4ECDD; }
+
+/* usage note */
+.usage{ display:flex; gap:12px; align-items:flex-start; background:var(--accent-wash); border:1px solid #E7D3AD; border-radius:12px; padding:13px 16px; margin:20px 0 10px; font-size:.88rem; line-height:1.6; color:var(--accent-deep); }
+.usage .ic{ font-size:1rem; line-height:1.4; }
+
+/* stance */
+.stance{ margin:20px 0; }
+.stance .si{ border:1px solid var(--rule); border-left:4px solid var(--accent); background:var(--panel); border-radius:0 13px 13px 0; padding:15px 20px; margin:12px 0; }
+.stance .si .h{ font-family:var(--serif); font-weight:600; font-size:1.02rem; margin-bottom:4px; }
+.stance .si .b{ font-size:.88rem; line-height:1.65; color:var(--ink-soft); }
+
+/* question groups */
+.qgroup{ margin:26px 0; }
+.qgroup .gh{ display:flex; align-items:center; gap:11px; margin-bottom:11px; padding-bottom:8px; border-bottom:1.5px solid var(--ink); }
+.qgroup .gh .gt{ font-family:var(--serif); font-weight:600; font-size:1.18rem; }
+.badge{ font-size:.68rem; font-weight:700; letter-spacing:.1em; background:var(--accent); color:#fff; padding:3px 10px; border-radius:999px; white-space:nowrap; }
+.qlist{ list-style:none; margin:0 0 14px; padding:0; counter-reset:q; }
+.qlist li{ position:relative; padding:8px 0 8px 28px; }
+.qlist li::before{ counter-increment:q; content:"Q" counter(q); position:absolute; left:0; top:8px; font-size:.74rem; font-weight:700; color:var(--accent-deep); font-family:var(--serif); }
+.qlist .qq{ font-size:.97rem; line-height:1.6; }
+.qlist .help{ display:block; font-size:.82rem; line-height:1.55; color:var(--ink-faint); margin-top:4px; }
+
+/* memo fields */
+.qa{ margin-top:4px; }
+.qa label{ font-size:.7rem; letter-spacing:.12em; color:var(--ink-faint); font-weight:700; display:block; margin-bottom:6px; }
+textarea.memo{ width:100%; min-height:104px; resize:vertical; border:1px solid var(--rule); border-radius:11px; background:var(--panel); padding:13px 15px; font-family:var(--sans); font-size:.95rem; line-height:1.7; color:var(--ink); }
+textarea.memo.tall{ min-height:140px; }
+textarea.memo::placeholder{ color:#B7BAC5; }
+textarea.memo:focus{ outline:2px solid var(--accent); outline-offset:1px; border-color:var(--accent); }
+
+/* actions */
+.actions{ margin-top:40px; padding:24px 22px; border:1px solid var(--rule); border-radius:16px; background:var(--panel); }
+.actions .an{ font-size:.88rem; line-height:1.6; color:var(--ink-soft); margin:0 0 14px; }
+.btnrow{ display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+button{ font-family:var(--sans); cursor:pointer; border:none; }
+.btn-primary{ background:var(--den); color:#F4ECDD; font-size:.95rem; font-weight:700; padding:12px 22px; border-radius:10px; }
+.btn-primary:hover{ background:#27404c; }
+.btn-secondary{ background:transparent; color:var(--ink-soft); font-size:.9rem; font-weight:500; padding:11px 18px; border-radius:10px; border:1px solid var(--rule); }
+.btn-secondary:hover{ background:var(--panel-2); }
+.btn-clear{ background:transparent; color:var(--ink-faint); font-size:.82rem; padding:8px 4px; text-decoration:underline; }
+#status{ font-size:.85rem; color:var(--accent-deep); font-weight:700; }
+.savehint{ font-size:.78rem; color:var(--ink-faint); margin-top:12px; }
+
+.endmark{ text-align:center; margin:36px 0 4px; color:var(--ink-faint); font-size:.9rem; letter-spacing:.18em; }
+.endmark .s{ color:var(--accent); }
+
+/* responsive */
+@media (max-width:620px){
+  .wrap{ padding:34px 18px 92px; }
+  .hero h1{ font-size:1.7rem; }
+  .hero h1 .amp{ font-size:1rem; }
+  .essence-text{ font-size:1.08rem; }
+  .quote{ font-size:1.02rem; }
+  .sec-head h2{ font-size:1.18rem; }
+  .cards, .scope, .legend, .bridge-note{ flex-direction:column; }
+  .divider .band h2{ font-size:1.42rem; }
+  .bar .fill{ font-size:.84rem; padding-left:12px; }
+  .btnrow{ flex-direction:column; align-items:stretch; }
+  .btn-primary, .btn-secondary{ text-align:center; }
+}
+
+@media print{
+  .usage, .actions, .savehint{ display:none; }
+  textarea.memo{ border:1px solid #ccc; background:#fff; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- HERO -->
+<header class="hero">
+  <div class="eyebrow">FOR こうじさん ／ ヒアリングシート</div>
+  <h1 class="serif">コミュニティ設計書<span class="amp">＆ すり合わせのためのヒアリングシート</span></h1>
+  <div class="sub">こうじさん フォロワー × 作り手コミュニティ（ドラフト）</div>
+  <p class="note">※これは「私のイメージ」をまとめた叩き台です。ここを起点に、こうじさんにもヒアリングさせていただき、一緒に固めていきたいと考えています。前半は構想、後半（§10）が一緒に決めたいことです。各項目に直接入力できます。</p>
+</header>
+
+<!-- 1 -->
+<section class="sec">
+  <div class="sec-head"><span class="sec-no">01</span><h2 class="serif">思想</h2><span class="hr"></span></div>
+  <div class="essence">
+    <div class="essence-label">この場を、一言で</div>
+    <p class="essence-text">AIに興味がある人が、<span class="em">“驚き屋”のいない信頼できる空気</span>の中で、実際に使える事例を持ち帰り、つくりたい人は一緒につくれる。そして、悩みを打ち明けられる ── そんな場所。</p>
+  </div>
+  <p>Instagramを「見るだけ」では得られないのは、<b>信頼できる人</b>と、<b>手を動かす場</b>、<b>リスナー同士の会話</b>。これがこの場の存在理由です。</p>
+</section>
+
+<!-- 2 -->
+<section class="sec">
+  <div class="sec-head"><span class="sec-no">02</span><h2 class="serif">設計思想 ──「贈り物と、その奥の巣窟」</h2><span class="hr"></span></div>
+  <p>この場は2層で考えています。明るく開かれた「贈り物」の表と、その奥にある静かな「巣窟」。</p>
+
+  <figure>
+    <svg class="fig-svg" viewBox="0 0 700 372" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="表（贈り物）と奥（巣窟）の2層モデル図">
+      <defs>
+        <linearGradient id="giftfill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#FBF4E5"/><stop offset="100%" stop-color="#F4E7CD"/>
+        </linearGradient>
+        <radialGradient id="lamp" cx="50%" cy="34%" r="60%">
+          <stop offset="0%" stop-color="#F0CB84" stop-opacity="0.85"/>
+          <stop offset="45%" stop-color="#D7A24F" stop-opacity="0.28"/>
+          <stop offset="100%" stop-color="#D7A24F" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="bridge" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#E8C387" stop-opacity="0.25"/>
+          <stop offset="50%" stop-color="#E8C387" stop-opacity="0.85"/>
+          <stop offset="100%" stop-color="#E8C387" stop-opacity="0.55"/>
+        </linearGradient>
+        <filter id="soft" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="6"/></filter>
+      </defs>
+      <rect x="22" y="58" width="304" height="236" rx="20" fill="url(#giftfill)" stroke="#E4CC98" stroke-width="1.5"/>
+      <text class="s" x="46" y="92" font-size="20" font-weight="600" fill="#1F232C">表</text>
+      <text class="s" x="80" y="92" font-size="13" fill="#8A5E22">＝ 贈り物</text>
+      <g fill="#C68A3E">
+        <circle cx="74" cy="150" r="5" opacity="0.55"/><circle cx="116" cy="176" r="5" opacity="0.7"/>
+        <circle cx="92" cy="210" r="5" opacity="0.5"/><circle cx="150" cy="148" r="5" opacity="0.6"/>
+        <circle cx="178" cy="192" r="5" opacity="0.75"/><circle cx="140" cy="228" r="5" opacity="0.55"/>
+        <circle cx="206" cy="160" r="5" opacity="0.6"/><circle cx="234" cy="206" r="5" opacity="0.7"/>
+        <circle cx="196" cy="244" r="5" opacity="0.5"/><circle cx="262" cy="178" r="5" opacity="0.6"/>
+        <circle cx="100" cy="252" r="5" opacity="0.5"/><circle cx="276" cy="232" r="5" opacity="0.6"/>
+      </g>
+      <text x="174" y="284" text-anchor="middle" font-size="10.5" fill="#6E5A38">初心者ゾーン ／ 誰でも安心して入れる</text>
+      <rect x="326" y="158" width="74" height="34" rx="12" fill="url(#bridge)"/>
+      <path d="M332 175 H394" stroke="#B07C33" stroke-width="1.5" stroke-dasharray="2 5" stroke-linecap="round"/>
+      <path d="M384 168 l9 7 -9 7" fill="none" stroke="#8A5E22" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text class="s" x="363" y="146" text-anchor="middle" font-size="11" font-weight="600" fill="#1F232C">ゆるい橋</text>
+      <text x="363" y="210" text-anchor="middle" font-size="8.5" fill="#8A5E22">圧はかけない</text>
+      <rect x="400" y="78" width="278" height="196" rx="20" fill="#1E2E37"/>
+      <ellipse cx="539" cy="150" rx="120" ry="92" fill="url(#lamp)" filter="url(#soft)"/>
+      <text class="s" x="424" y="112" font-size="20" font-weight="600" fill="#F0D9AE">奥</text>
+      <text class="s" x="458" y="112" font-size="13" fill="#D7A24F">＝ 巣窟</text>
+      <circle cx="539" cy="150" r="6.5" fill="#F4D89B"/>
+      <g fill="#EBC684">
+        <circle cx="498" cy="178" r="5" opacity="0.9"/><circle cx="556" cy="186" r="5" opacity="0.85"/>
+        <circle cx="524" cy="210" r="5" opacity="0.8"/><circle cx="582" cy="172" r="5" opacity="0.75"/>
+      </g>
+      <text x="539" y="256" text-anchor="middle" font-size="10.5" fill="#C9CDD1">つくる人が集まる、静かな部屋</text>
+      <text x="174" y="330" text-anchor="middle" font-size="10" font-weight="500" fill="#535968">裾野 ・ 場のエネルギー源</text>
+      <text x="539" y="330" text-anchor="middle" font-size="10" font-weight="500" fill="#535968">中心 ・ 行き先</text>
+      <path d="M250 348 H452" stroke="#D8CFBE" stroke-width="1.2"/>
+      <path d="M444 343 l9 5 -9 5" fill="none" stroke="#B07C33" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+    <div class="legend">
+      <div class="lg"><div class="t">表 ＝ 贈り物</div><div class="d">初心者ゾーン。気前のいい情報と質問、誰でも安心して入れる。場のエネルギー源（裾野）。</div></div>
+      <div class="lg dark"><div class="t">奥 ＝ 巣窟</div><div class="d">つくる人が集まる静かな部屋。制作・自動化・工房。行き先（中心）。</div></div>
+    </div>
+    <div class="bridge-note">
+      <div class="bn"><span class="num">1</span><b>逆方向の可視化。</b>巣窟で生まれた成果物を「こんなの作ったよ」と表に流す。見た人が自然と「自分にもできるかも」と思える。</div>
+      <div class="bn"><span class="num">2</span><b>手が挙がった瞬間に招く。</b>「これ自分で作るには？」と聞かれた時こそ、巣窟への自然な入り口。本人が興味を示した時だけ案内する。</div>
+    </div>
+  </figure>
+
+  <div class="quote">奥が中心、表が裾野。ただし「成長しろ」という圧はかけません。良い場があって、もっと欲しい人には扉が開いている ── それだけです。</div>
+  <p>運営の根っこは「誰かの役に立ちたい」という奉仕で、押し売りはしません。</p>
+</section>
+
+<!-- 3 -->
+<section class="sec">
+  <div class="sec-head"><span class="sec-no">03</span><h2 class="serif">主役と重心</h2><span class="hr"></span></div>
+  <p>重心の優先順位は、この順で考えています。</p>
+  <div class="bars">
+    <div class="bar b1"><span class="rank">1</span><div class="track"><div class="fill">つくる人同士がつながる</div></div></div>
+    <div class="bar b2"><span class="rank">2</span><div class="track"><div class="fill">初心者が学べる</div></div></div>
+    <div class="bar b3"><span class="rank">3</span><div class="track"><div class="fill">創作物を見せ合う</div></div></div>
+    <div class="bar b4"><span class="rank">4</span><div class="track"><div class="fill">雑談</div></div></div>
+  </div>
+  <p>ただし人数で言えば初心者が多数になるはず。なので <b>表（初心者ゾーン）を場のエネルギー源</b>、<b>奥（巣窟）を行き先</b>、という役割分担で設計します。</p>
+</section>
+
+<!-- 4 -->
+<section class="sec">
+  <div class="sec-head"><span class="sec-no">04</span><h2 class="serif">ゾーンと、ゆるい橋</h2><span class="hr"></span></div>
+  <p><b>初心者ゾーン</b>は質問・事例共有が中心で、心理的安全を最優先。<b>巣窟ゾーン</b>は制作・自動化・Web/アプリの相談や自慢の場で、リポジトリやWebアプリの置き場（工房）もここに含めます。初心者を置き去りにせず、つくり手を退屈させないための棲み分けです。</p>
+  <p>その上で、初心者ゾーンから巣窟へ向かう「ゆるい橋」も作りたい。初心者が「私も一緒に何か作れるかも」と思ってくれたら嬉しいので。ただし圧はかけたくないので、運営が背中を押すのではなく、<b>初心者自身の好奇心で歩いてもらう</b>設計にします（具体は §2 の図の①②）。</p>
+</section>
+
+<!-- 5 -->
+<section class="sec">
+  <div class="sec-head"><span class="sec-no">05</span><h2 class="serif">何を「成功」と呼ぶか</h2><span class="hr"></span></div>
+  <p>会員数や転換率では測りません。測るのは、この2つだけです。</p>
+  <div class="cards">
+    <div class="card"><div class="ct"><span class="cn">1</span>良い場所か</div><div class="cd">ここが本当に「良い場所」になっているか。信頼の空気が保たれているか。</div></div>
+    <div class="card"><div class="ct"><span class="cn">2</span>並走できたか</div><div class="cd">実際に、誰かと並走してものをつくれて、誰かのモチベーションの助けになっているか。</div></div>
+  </div>
+</section>
+
+<!-- 6 -->
+<section class="sec">
+  <div class="sec-head"><span class="sec-no">06</span><h2 class="serif">信頼が商品 ──「驚き屋がいない場」</h2><span class="hr"></span></div>
+  <div class="quote">最大の差別化は「AIを学べること」ではありません（それは無数にある）。<b>誇張・煽り・嘘がない、信頼できる空気そのもの</b>を価値として打ち出します。</div>
+  <p>これは、こうじさんの「本当に使えるAIだけ」というブランドと完全に一致します。</p>
+  <div class="callout"><span class="arrowline">→ だからこそ</span>、自己宣伝・アフィリエイト・誇張実績・偽の成果物の扱いは、最初にルール化したいと考えています（§10で相談）。</div>
+</section>
+
+<!-- 7 -->
+<section class="sec">
+  <div class="sec-head"><span class="sec-no">07</span><h2 class="serif">構成（最初のMVP）</h2><span class="hr"></span></div>
+  <div class="scope">
+    <div class="col in">
+      <h4>入れる（最初から）</h4>
+      <ul>
+        <li>会員登録 / プロフィール</li><li>投稿・コメント・いいね（保存）</li>
+        <li>カテゴリ（最初は5つ前後）</li><li>タグ検索</li>
+        <li>厳選事例のナレッジページ</li><li>通報・管理画面</li>
+        <li>創作物（リポジトリ／Webアプリ）置き場</li>
+      </ul>
+    </div>
+    <div class="col out">
+      <h4>あえて入れない（最初は）</h4>
+      <ul><li>DM</li><li>リアルタイムチャット</li><li>複雑なランク・ポイント制</li><li>多段階の有料プラン</li></ul>
+    </div>
+  </div>
+  <div class="subt">カテゴリ案（最初は絞る）</div>
+  <div class="chips">
+    <span class="chip">初心者の質問</span><span class="chip">仕事効率化・自動化</span>
+    <span class="chip">つくったもの（成功・失敗）</span><span class="chip">使えるプロンプト・テンプレ</span>
+    <span class="chip">工房（共同制作・協力者募集）</span>
+  </div>
+  <p class="tinynote">まずは小人数で、4週間ほど「投稿と質問が本当に回るか」を見てから育てます。</p>
+</section>
+
+<!-- 8 -->
+<section class="sec">
+  <div class="sec-head"><span class="sec-no">08</span><h2 class="serif">なぜ独自サイトか（Discordとの関係）</h2><span class="hr"></span></div>
+  <p>Discordでも機能は足ります。ただし「誰がオンラインか見える」「通知で急かされる」感覚が、私が大事にしたい <b>静かで監視感のない空気</b> と相性が悪い。だから表の場は独自に持ち、Discordは必要ならサブ（通知・リアルタイム用）として並行運用します。</p>
+  <div class="callout"><span class="k">ひとつの案</span>「つくること自体」がこのコミュニティの楽しみでもあるので、サイトづくりを <b>最初の共同プロジェクト</b> にする手もあると思っています。</div>
+  <p>形態は、まずは <b>Webアプリ</b> を想定しています。私の開発環境がWindowsで、iOS/Androidのネイティブアプリはリリースのハードルが高いこと、そして「まず場が回るか」を早く検証したいことから、数日で立てられて全端末で見られるWebが最初の一歩として現実的だと考えています（将来アプリ化するかは追って相談）。</p>
+</section>
+
+<!-- 9 -->
+<section class="sec">
+  <div class="sec-head"><span class="sec-no">09</span><h2 class="serif">運営とリスク（正直なところ）</h2><span class="hr"></span></div>
+  <ul class="risk">
+    <li><b>私の割ける時間。</b>波はありますが、当面は週5〜15時間ほど確保できる見込みです。</li>
+    <li><b>最大のリスクは機能不足ではなく、運営の継続が止まること。</b>モデレーターが燃え尽きると場は死にます。</li>
+    <li><b>単一障害点。</b>この場の価値はこうじさんの信頼に大きく依存しています。だからこそ、関わり方の期待値を最初にすり合わせたいです。</li>
+  </ul>
+</section>
+
+<!-- 10 DIVIDER -->
+<div class="divider">
+  <div class="band">
+    <div class="eyebrow">SECTION 10 ／ 一緒に決めたいこと</div>
+    <h2 class="serif">ここから、こうじさんと一緒に決めたいこと</h2>
+    <p>揉めないため・場を長く続けるための事前すり合わせです。詰問ではなく、最初に文章で残しておくと後で双方が安心できる、という趣旨です。<b>全部に今すぐ答えていただく必要はありません。特に最初に決めたいのは【最優先】の2つで、あとはおいおいで大丈夫です。</b></p>
+  </div>
+</div>
+
+<div class="usage"><span class="ic">✎</span><span>各項目の入力欄に直接書き込めます。入力は<b>この端末に自動保存</b>されるので、途中で閉じても消えません。書き終えたら、ページ下の<b>「回答をまとめてコピー」</b>でYukiに送ってください。</span></div>
+
+<!-- stance -->
+<div class="stance">
+  <p class="subt" style="margin-bottom:4px;">最初に、私のスタンスを2つだけはっきりさせておきます。</p>
+  <div class="si"><div class="h">収益化はしません。</div><div class="b">私はただの1リスナーとして、無料のファン企画として作ります。収益や権利を私が持つつもりは一切ありません。</div></div>
+  <div class="si"><div class="h">役割は「地位」ではなく「責任」の話として考えています。</div><div class="b">日々の運営・モデレーション（投稿の管理など）は私が回します。一方で、ブランドに関わる判断や、通報・削除・退会といった重大な処置の最終判断は、こうじさんに持っていただくのが筋だと思っています。</div></div>
+</div>
+
+<!-- Q groups -->
+<div class="qgroup">
+  <div class="gh"><span class="badge">最優先</span><span class="gt">立ち位置とブランド</span></div>
+  <ul class="qlist">
+    <li><span class="qq">この場は「公式」ですか、「公認ファンコミュニティ」ですか？</span><span class="help">私としてはファンコミュニティのつもりでしたが、ご本人に直接確認する以上、実質「公式」に近いのでは、とも思い記載しています。ここが決まると、責任の所在も呼び方も全部決まります。</span></li>
+    <li><span class="qq">アカウント名・写真・ロゴ・投稿内容を、どこまで使ってよいですか？</span></li>
+  </ul>
+  <div class="qa"><label for="m1">こうじさんメモ</label><textarea class="memo tall" id="m1" data-label="立ち位置とブランド" placeholder="ここに入力（自動保存されます）"></textarea></div>
+</div>
+
+<div class="qgroup">
+  <div class="gh"><span class="gt">関わり方</span></div>
+  <ul class="qlist">
+    <li><span class="qq">どれくらい関われそうですか？</span><span class="help">決まった負担をお願いするものではなく、「これくらいなら」という肌感で大丈夫です。たとえば「月1ライブで紹介する」「気が向いた時に投稿」「運営は丸ごとお任せ」など、幅のあるイメージで構いません。</span></li>
+    <li><span class="qq">「本人に直接質問できる場」と謳ってよいですか？</span><span class="help">難しければ謳いません。</span></li>
+  </ul>
+  <div class="qa"><label for="m2">こうじさんメモ</label><textarea class="memo" id="m2" data-label="関わり方" placeholder="ここに入力（自動保存されます）"></textarea></div>
+</div>
+
+<div class="qgroup">
+  <div class="gh"><span class="gt">狙いについて</span></div>
+  <ul class="qlist">
+    <li><span class="qq">この場は「フォロワーへの価値提供」ですか、「スクール・研修への導線」ですか？</span><span class="help">両立なら、導線をどれくらい前に出しますか？</span></li>
+    <li><span class="qq">3ヶ月後、こうじさんにとっての「成功」のイメージは？</span></li>
+  </ul>
+  <div class="qa"><label for="m3">こうじさんメモ</label><textarea class="memo" id="m3" data-label="狙いについて" placeholder="ここに入力（自動保存されます）"></textarea></div>
+</div>
+
+<div class="qgroup">
+  <div class="gh"><span class="gt">治安と安全（＋最終判断者）</span></div>
+  <ul class="qlist">
+    <li><span class="qq">自己宣伝・営業・アフィリエイトを、どこまで許しますか？（申告制など）</span></li>
+    <li><span class="qq">誤情報・誇張実績・AI生成の偽成果物への対応は？</span></li>
+    <li><span class="qq">機密・個人情報（例：クライアントの業務情報をAIに入れる等）の注意書きを置く方針でよいですか？</span></li>
+    <li><span class="qq">通報・削除・退会処置の最終判断は誰がしますか？</span><span class="help">私は冒頭の通り「最終判断はこうじさん」を想定していますが、ここはご意向に合わせます。</span></li>
+  </ul>
+  <div class="qa"><label for="m4">こうじさんメモ</label><textarea class="memo tall" id="m4" data-label="治安と安全" placeholder="ここに入力（自動保存されます）"></textarea></div>
+</div>
+
+<div class="qgroup">
+  <div class="gh"><span class="gt">立ち上げと撤退</span></div>
+  <ul class="qlist">
+    <li><span class="qq">最初の募集を、どう告知しますか？（Instagram導線）</span></li>
+    <li><span class="qq">初期メンバーにどんな人を入れたいですか？</span><span class="help">“見る人”より、“つくる人”を数人混ぜたいと思っています。</span></li>
+    <li><span class="qq">もし将来終了する場合、会員・投稿データをどう扱いますか？</span></li>
+  </ul>
+  <div class="qa"><label for="m5">こうじさんメモ</label><textarea class="memo" id="m5" data-label="立ち上げと撤退" placeholder="ここに入力（自動保存されます）"></textarea></div>
+</div>
+
+<!-- ACTIONS -->
+<div class="actions">
+  <p class="an">記入が終わったら、下のボタンで回答をひとまとめにできます。コピーしてLINEやDMでYukiに送ってください。</p>
+  <div class="btnrow">
+    <button class="btn-primary" id="copyBtn">回答をまとめてコピー</button>
+    <button class="btn-secondary" id="downloadBtn">テキストで保存</button>
+    <span id="status" role="status" aria-live="polite"></span>
+  </div>
+  <p class="savehint">入力内容はこの端末（ブラウザ）に自動保存されます。別の端末には引き継がれません。<button class="btn-clear" id="clearBtn">入力をすべて消す</button></p>
+</div>
+
+<div class="endmark"><span class="s">❖</span>&nbsp;&nbsp;ここまで読んでいただき、ありがとうございます&nbsp;&nbsp;<span class="s">❖</span></div>
+
+</div>
+
+<script>
+(function(){
+  var KEY = 'kouji_hearing_v1:';
+  var memos = Array.prototype.slice.call(document.querySelectorAll('textarea.memo'));
+  var statusEl = document.getElementById('status');
+  var t;
+
+  // restore
+  memos.forEach(function(m){
+    try { var v = localStorage.getItem(KEY + m.id); if (v !== null) m.value = v; } catch(e){}
+  });
+
+  // autosave
+  function flash(msg){
+    statusEl.textContent = msg;
+    clearTimeout(t); t = setTimeout(function(){ statusEl.textContent = ''; }, 1600);
+  }
+  memos.forEach(function(m){
+    m.addEventListener('input', function(){
+      try { localStorage.setItem(KEY + m.id, m.value); flash('保存しました'); } catch(e){ flash('保存できませんでした'); }
+    });
+  });
+
+  // build combined text
+  function buildText(){
+    var lines = ['【こうじさん フォロワー×作り手コミュニティ ヒアリング回答】', ''];
+    memos.forEach(function(m){
+      lines.push('■ ' + (m.dataset.label || m.id));
+      var v = (m.value || '').trim();
+      lines.push(v ? v : '（未記入）');
+      lines.push('');
+    });
+    return lines.join('\n').trim();
+  }
+
+  // robust copy
+  function copyText(text){
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise(function(resolve, reject){
+      try {
+        var ta = document.createElement('textarea');
+        ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.focus(); ta.select();
+        var ok = document.execCommand('copy'); document.body.removeChild(ta);
+        ok ? resolve() : reject();
+      } catch(e){ reject(e); }
+    });
+  }
+
+  document.getElementById('copyBtn').addEventListener('click', function(){
+    copyText(buildText()).then(function(){ flash('コピーしました！LINE/DMに貼り付けて送ってください'); })
+      .catch(function(){ flash('コピーできませんでした。手動で選択してコピーしてください'); });
+  });
+
+  document.getElementById('downloadBtn').addEventListener('click', function(){
+    try {
+      var blob = new Blob([buildText()], {type:'text/plain;charset=utf-8'});
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url; a.download = 'ヒアリング回答.txt';
+      document.body.appendChild(a); a.click();
+      document.body.removeChild(a); URL.revokeObjectURL(url);
+      flash('ダウンロードしました');
+    } catch(e){ flash('保存できませんでした'); }
+  });
+
+  document.getElementById('clearBtn').addEventListener('click', function(){
+    if (!confirm('入力した内容をすべて消します。よろしいですか？')) return;
+    memos.forEach(function(m){ m.value = ''; try { localStorage.removeItem(KEY + m.id); } catch(e){} });
+    flash('消去しました');
+  });
+})();
+</script>
+</body>
+</html>
